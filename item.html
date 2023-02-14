@@ -1,0 +1,732 @@
+<script src="https://kit.fontawesome.com/3a912e8c1f.js" crossorigin="anonymous"></script>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #print_btn {
+    display: none;
+  }
+
+  section {
+    /* width: 600px;
+  max-width: 700px; */
+    width: 95%;
+    max-width: 700px;
+  }
+
+  .flex_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header {
+    margin: 2rem;
+  }
+
+  header p {
+    text-align: center;
+  }
+
+  .column_heading {
+    margin: 0.5rem 0;
+    font-size: 1.6rem;
+  }
+
+  .sub_heading {
+    color: grey;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .container {
+    /* border: 1px solid black; */
+    margin: 0 auto;
+    width: 100%;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px grey;
+  }
+
+  .column {
+    margin: 2rem 0;
+  }
+
+  .input_group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .radio_group {
+    margin: .5rem;
+    padding: .5rem 0;
+  }
+
+  .radio_group p {
+    margin: .5rem 0;
+  }
+
+  .input_group input,
+  .input_group textarea {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 3px;
+    border: 2px solid rgb(199, 199, 199);
+  }
+
+  .input_group label {
+    padding: 5px;
+    transition: all 0.3s;
+  }
+
+  .input_group label:hover {
+    cursor: pointer;
+    color: rgb(0, 89, 255);
+  }
+
+  .input_group input:focus,
+  .input_group textarea:focus {
+    outline: none;
+    border: 2px solid rgba(50, 155, 197, 0.671);
+    box-shadow: 0px 0px 0px 3px rgba(193, 233, 248, 0.842);
+  }
+
+  .pi_group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pi_group textarea,
+  .pi_group input,
+  .pi_group label,
+  .pi_group #weAddBtn,
+  .pi_group #lAddBtn,
+  .pi_group #slAddBtn,
+  .pi_group #sAddBtn,
+  .pi_group #cAddBtn,
+  .pi_group #aAddBtn,
+  .pi_group #ebAddBtn {
+    width: 100%;
+  }
+
+  #lAddBtn button,
+  #sAddBtn button,
+  #slAddBtn button,
+  #cAddBtn button,
+  #aAddBtn button,
+  #weAddBtn button,
+  #ebAddBtn button {
+    padding: 0.2rem 0.6rem;
+    font-size: 1rem;
+    background-color: rgb(0, 132, 255);
+    color: white;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 .5rem;
+  }
+
+  .bottom_sec {
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .bottom_sec button {
+    padding: 1rem;
+    font-size: 1.5rem;
+    background: linear-gradient(grey, white);
+    margin: 0 10px;
+  }
+
+  .bottom_sec button:hover {
+    cursor: pointer;
+    background: linear-gradient(white, grey);
+  }
+
+  /* template ************************** */
+  #template_window {
+    display: none;
+  }
+
+  #cv_template {
+    box-shadow: none;
+    border-radius: 0px;
+    border: 1px solid black;
+    margin: 0 auto;
+    display: flex;
+    min-height: 28cm;
+    line-height: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  /* left column  */
+  .left_column {
+    width: 35%;
+    flex-direction: column;
+    background-color: rgb(18, 120, 167);
+    color: white;
+    background: linear-gradient(rgb(4, 75, 104), rgb(70, 153, 185));
+    justify-content: flex-start;
+  }
+
+  .left_column a {
+    color: white;
+  }
+
+  .left_column ul li {
+    list-style: none;
+  }
+
+  .right_column .block ul {
+    margin: 0 10px;
+  }
+
+  .left_column ul li {
+    list-style: none;
+  }
+
+  .left_column .sub_heading {
+    color: whitesmoke;
+  }
+
+  .block {
+    width: 90%;
+    margin: 20px auto;
+    word-break: break-word;
+  }
+
+  .left_column .block #img_space {
+    border-radius: 50%;
+    width: 85%;
+    margin: auto;
+    border: 2px solid whitesmoke;
+    padding-top: 85%;
+  }
+
+  .right_column {
+    width: 65%;
+    padding-top: 3rem;
+  }
+
+  .right_column li {
+    list-style: square;
+    margin-left: 1rem;
+  }
+
+  .fa-phone {
+    transform: rotate(90deg);
+  }
+
+  .cv_heading {
+    margin: 1rem 0;
+    border-bottom: 4px solid rgb(4, 75, 104);
+    padding: 4px 0;
+  }
+
+  .name {
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: center;
+  }
+
+  /* phone css  */
+  @media (max-width : 480px) {
+    header {
+      margin: 0;
+      margin-top: 1rem;
+    }
+
+    header h1,
+    header p {
+      margin: 0;
+    }
+
+    .column_heading {
+      font-size: 1.2rem;
+    }
+
+    .input_group label {
+      font-size: .8rem;
+    }
+
+    .input_group label:hover {
+      transform: scale(1);
+    }
+
+    .input_group input,
+    .input_group textarea {
+      font-size: .8rem;
+      padding: .2rem;
+    }
+
+    .radio_group label {
+      font-size: .8rem;
+    }
+
+    .radio_group p {
+      font-size: .8rem;
+    }
+
+    .input_group div button {
+      font-size: .8rem !important;
+    }
+
+    .bottom_sec button {
+      padding: 0.2rem;
+      font-size: 1rem;
+    }
+  }
+</style>
+<div id="form_window">
+  <div class="container flex_center" id="cv_form">
+    <header>
+      <h1>CV Generator</h1>
+      <p>Build your own CV easily</p>
+    </header>
+    <section>
+      <!-- first column  -->
+      <div class="column">
+        <h3 class="column_heading">Personal Information</h3>
+
+        <!-- profile image  -->
+        <div class="input_group">
+          <label for="image_field">Profile Photo (Optional)</label>
+          <input type="file" id="image_field" accept="image/png, image/jpg, image/jpeg" />
+        </div>
+
+        <!-- name  -->
+        <div class="input_group">
+          <label for="name_field">Full Name</label>
+          <input type="text" id="name_field" placeholder="Enter name here..." />
+        </div>
+
+        <!-- contact  -->
+        <div class="input_group">
+          <label for="contact_field">Contact Number</label>
+          <input type="text" id="contact_field" placeholder="Enter contact number..." />
+        </div>
+
+        <!-- email  -->
+        <div class="input_group">
+          <label for="email_field">Email Id</label>
+          <input type="email" id="email_field" placeholder="Enter email id..." />
+        </div>
+
+        <!-- address  -->
+        <div class="input_group">
+          <label for="address_field">Address</label>
+          <textarea rows="4" id="address_field" placeholder="Enter address..." \></textarea>
+        </div>
+
+        <!-- Father's Name  -->
+        <div class="input_group">
+          <label for="faName_field">Father's Name</label>
+          <input id="faName_field" placeholder="Father's Name..." \></input>
+        </div>
+
+        <!-- Gender  -->
+        <div class="input_group">
+          <label for="gen_field">Gender</label>
+          <input id="gen_field" placeholder="Gender..." \></input>
+        </div>
+
+        <!-- date of birth  -->
+        <div class="input_group">
+          <label for="DOB_field">Date of Birth</label>
+          <input type="date" id="DOB_field">
+        </div>
+
+        <!-- Marital status  -->
+        <div class="input_group">
+          <label for="ms_field">Marital Status</label>
+          <input id="ms_field" placeholder="Marital Status..." \></input>
+        </div>
+
+        <!-- Nationality  -->
+        <div class="input_group">
+          <label for="nat_field">Nationality</label>
+          <input id="nat_field" placeholder="Nationality..." \></input>
+        </div>
+
+        <!-- languages  -->
+        <h4 class="sub_heading">Languages</h4>
+        <div class="input_group pi_group" id="langGroup">
+          <input type="text" placeholder="Language" class="lang_field" />
+          <div class="cont flex_center" id="lAddBtn">
+            <button onclick="addNewField('input', 'Language','lang_field' ,'langGroup', 'lAddBtn')">+ Add More</button>
+            <button onclick="removeField('lAddBtn')">- Remove</button>
+          </div>
+        </div>
+
+        <!-- Hobbies  -->
+        <h4 class="sub_heading">Hobbies</h4>
+        <div class="input_group pi_group" id="hobbiesGroup">
+          <input type="text" placeholder="Hobbies" class="hobby_field" />
+        </div>
+
+        <!-- second column -->
+        <div class="column">
+          <h3 class="column_heading">Professional Information</h3>
+
+          <!-- objective  -->
+          <div class="input_group pi_group">
+            <label for="objective_field">Objective</label>
+            <textarea rows="5" id="objective_field" placeholder="Enter objective..." \></textarea>
+          </div>
+
+          <!-- work experience  -->
+          <div class="input_group pi_group" id="we_group">
+            <label for="we_field">Work Experience</label>
+            <textarea class="weField" placeholder="Work Experience..." \></textarea>
+            <div class="cont flex_center" id="weAddBtn">
+              <button onclick="addNewField('textarea', 'Work Experience...' , 'weField', 'we_group', 'weAddBtn')">+ Add
+                More</button>
+              <button onclick="removeField('weAddBtn')">- Remove</button>
+            </div>
+          </div>
+
+          <!-- Education Background  -->
+          <div class="input_group pi_group" id="eb_group">
+            <label for="eb_field">Educational Background</label>
+            <textarea class="ebField" placeholder="Education..." \></textarea>
+            <div class="cont flex_center" id="ebAddBtn">
+              <button onclick="addNewField('textarea',  'Education...', 'ebField', 'eb_group', 'ebAddBtn')">+ Add
+                More</button>
+              <button onclick="removeField('ebAddBtn')">- Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications  -->
+        <div class="column">
+          <h3 class="column_heading">Certifications</h3>
+
+          <div class="input_group pi_group" id="certGroup">
+            <input type="text" placeholder="Certification" class="cert_field" />
+            <div class="cont flex_center" id="cAddBtn">
+              <button onclick="addNewField('input' , 'Certification' ,'cert_field' , 'certGroup', 'cAddBtn')">+ Add
+                More</button>
+              <button onclick="removeField('cAddBtn')">- Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- skills  -->
+        <div class="column">
+          <h3 class="column_heading">Skill Highlights</h3>
+
+          <div class="input_group pi_group" id="skillsGroup">
+            <input type="text" placeholder="Skill" class="skill_field" />
+            <div class="cont flex_center" id="sAddBtn">
+              <button onclick="addNewField('input' , 'Skill', 'skill_field', 'skillsGroup', 'sAddBtn')">+ Add
+                More</button>
+              <button onclick="removeField('sAddBtn')">- Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Achievements  -->
+        <div class="column">
+          <h3 class="column_heading">Achievements <small>(Optional)</small></h3>
+
+          <div class="input_group pi_group" id="achGroup">
+            <input type="text" placeholder="Certification" class="ach_field" />
+            <div class="cont flex_center" id="aAddBtn">
+              <button onclick="addNewField('input' , 'Achievements' ,'ach_field' , 'achGroup', 'aAddBtn')">+ Add
+                More</button>
+              <button onclick="removeField('aAddBtn')">- Remove</button>
+            </div>
+          </div>
+        </div>
+
+    </section>
+    <section class="flex_center bottom_sec">
+      <button onclick="generateCV()" id="generate_btn">Generate CV</button>
+    </section>
+  </div>
+</div>
+
+<!-- cv template  -->
+<div id="template_window">
+  <div id="cv_template">
+    <div class="left_column flex_center">
+      <div class="block">
+        <h1 class="name" id="nameT"></h1>
+      </div>
+      <div class="block" id="img_block">
+        <div id="img_space">
+        </div>
+      </div>
+      <div class="block">
+        <p><i class="fas fa-phone"></i> <span id="contactT"></span> </p>
+        <p class="">
+          <i class="fas fa-envelope-open"></i> <small id="emailT"></small>
+        </p>
+        <p>
+          <i class="fas fa-map-marker-alt"></i> <span id="addressT"></span>
+        </p>
+      </div>
+      <div class="block">
+        <h3>Personal Info.</h3>
+
+        <h4 class="sub_heading">FATHER'S NAME :</h4>
+        <p id="fnT"></p>
+
+        <h4 class="sub_heading">DATE OF BIRTH :</h4>
+        <p id="dobT"></p>
+
+        <h4 class="sub_heading">GENDER :</h4>
+        <p id="genT"></p>
+
+        <h4 class="sub_heading">MARITAL STATUS :</h4>
+        <p id="msT"></p>
+
+        <h4 class="sub_heading">NATIONALITY :</h4>
+        <p id="natT"></p>
+
+        <h4 class="sub_heading">LANGUAGES KNOWN :</h4>
+        <ul class="l_ul" id="lT">
+        </ul>
+
+        <h4 class="sub_heading">HOBBIES :</h4>
+        <ul class="h_ul" id="hobbyT">
+        </ul>
+      </div>
+    </div>
+    <div class="right_column">
+      <div class="block">
+        <h3 class="cv_heading">Objective</h3>
+        <p id="objT">
+        </p>
+      </div>
+
+      <div class="block">
+        <h3 class="cv_heading">Work Experience</h3>
+        <ul id="weT">
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3 class="cv_heading">Educational Qualifications</h3>
+        <ul id="ebT">
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3 class="cv_heading">Certification Courses</h3>
+        <ul id="certT">
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3 class="cv_heading">Skill Highlights</h3>
+        <p>
+        <ul id="skillT">
+        </ul>
+        </p>
+      </div>
+
+      <div class="block" id="ach_block">
+        <h3 class="cv_heading">Achievements</h3>
+        <ul id="achT">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bottom_sec flex_center" id="print_btn">
+  <!-- <button onclick="printCV()">Print CV</button> -->
+  <button onclick="editCV()">Edit CV</button>
+  <button onclick="downloadPDF()">Save as PDF</button>
+</div>
+
+<!-- jquery  -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!-- html to pdf  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+<!-- main script  -->
+<script>
+
+  // add new field
+  function addNewField(elem, placeholder, clss, grpName, btn) {
+    let newNode = document.createElement(elem);
+    newNode.setAttribute("placeholder", placeholder);
+    newNode.classList.add(clss);
+
+    let slOb = document.getElementById(grpName);
+    let slAddBtn = document.getElementById(btn);
+
+    slOb.insertBefore(newNode, slAddBtn);
+  }
+
+  // remove field
+  function removeField(btnGrp) {
+    let btnG = document.getElementById(btnGrp)
+    btnG.previousElementSibling.remove();
+  }
+
+  const imageField = document.getElementById('image_field');
+  var uploadedImage = "";
+
+  imageField.addEventListener('change', function () {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      uploadedImage = reader.result;
+      let imgSpace = document.getElementById('img_space');
+      imgSpace.style.backgroundImage = `url(${uploadedImage})`;
+      imgSpace.style.backgroundSize = `cover`;
+      imgSpace.style.backgroundPosition = `center`;
+    })
+    reader.readAsDataURL(this.files[0]);
+
+  })
+
+  // generateCV
+  function generateCV() {
+
+    document.getElementById("nameT").innerHTML =
+      document.getElementById("name_field").value;
+
+    document.getElementById("contactT").innerHTML =
+      document.getElementById("contact_field").value;
+
+    document.getElementById("emailT").innerHTML =
+      document.getElementById("email_field").value;
+
+    document.getElementById("addressT").innerHTML =
+      document.getElementById("address_field").value;
+
+    document.getElementById("objT").innerHTML =
+      document.getElementById("objective_field").value;
+
+    document.getElementById("fnT").innerHTML =
+      document.getElementById("faName_field").value;
+
+    document.getElementById("natT").innerHTML =
+      document.getElementById("nat_field").value;
+
+    document.getElementById("genT").innerHTML =
+      document.getElementById("gen_field").value;
+
+    document.getElementById("msT").innerHTML =
+      document.getElementById("ms_field").value;
+
+    // DOB 
+    let date = new Date(document.getElementById("DOB_field").value)
+    let date1 = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', "Jun", 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    document.getElementById("dobT").innerHTML = date1 + ' ' + months[month] + ' ' + year;
+
+
+    // achievements
+    let aFs = document.getElementsByClassName("ach_field");
+    let str = "";
+    for (let e of aFs) {
+      str =
+        str + `<li>${e.value}</li>`;
+    }
+    document.getElementById("achT").innerHTML = str;
+
+    // language
+    let langFs = document.getElementsByClassName("lang_field");
+    let str1 = "";
+    for (let e of langFs) {
+      str1 = str1 + `<li> ${e.value}</li>`;
+    }
+    document.getElementById("lT").innerHTML = str1;
+
+    // work experience
+    let weFs = document.getElementsByClassName("weField");
+    let str2 = "";
+    for (let e of weFs) {
+      str2 = str2 + `<li> ${e.value} </li>`;
+    }
+    document.getElementById("weT").innerHTML = str2;
+
+    // educational background
+    let ebFs = document.getElementsByClassName("ebField");
+    let str3 = "";
+    for (let e of ebFs) {
+      str3 = str3 + `<li> ${e.value} </li>`;
+    }
+    document.getElementById("ebT").innerHTML = str3;
+
+    // skills
+    let sFs = document.getElementsByClassName("skill_field");
+    let str4 = "";
+    for (let e of sFs) {
+      str4 = str4 + `<li> ${e.value} </li>`;
+    }
+    document.getElementById("skillT").innerHTML = str4;
+
+    // Certifications
+    let cFs = document.getElementsByClassName("cert_field");
+    let str5 = "";
+    for (let e of cFs) {
+      str5 = str5 + `<li> ${e.value} </li>`;
+    }
+    document.getElementById("certT").innerHTML = str5;
+
+    // Hobbies
+    let hFs = document.getElementsByClassName("hobby_field");
+    let str6 = "";
+    for (let e of hFs) {
+      str6 = str6 + `<li> ${e.value} </li>`;
+    }
+    document.getElementById("hobbyT").innerHTML = str6;
+
+    document.getElementById("template_window").style.display = "block";
+    document.getElementById("form_window").style.display = "none";
+    document.getElementById("print_btn").style.display = "flex";
+
+    if (!imageField.value) {
+      let imgBlock = document.getElementById('img_block');
+      imgBlock.style.display = 'none';
+    }
+
+
+    let achField = document.querySelectorAll('.ach_field');
+    achField.forEach(element => {
+      let achBlock = document.getElementById('ach_block');
+      if (element.value) {
+        achBlock.style.display = 'block';
+      }
+      else {
+        achBlock.style.display = 'none';
+      }
+
+    });
+  }
+
+  function editCV() {
+    document.getElementById("template_window").style.display = "none";
+    document.getElementById("form_window").style.display = "block";
+    document.getElementById("print_btn").style.display = "none";
+  }
+
+  // function printCV() {
+  //   var backup = document.body.innerHTML;
+  //   var cvContent = document.getElementById("template_window").innerHTML;
+  //   document.body.innerHTML = cvContent;
+  //   window.print();
+  //   document.body.innerHTML = backup;
+  // }
+
+  function downloadPDF() {
+    let element = document.getElementById("template_window");
+    html2pdf().set({ filename: 'resume.pdf' }, { html2canvas: { scale: 2 } }).from(element).save();
+  }
+</script>
